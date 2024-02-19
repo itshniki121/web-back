@@ -71,3 +71,8 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
 Nest is [MIT licensed](LICENSE).
+## The author of the repository
+
+- Author - [Gerasimov Dmitriy]
+- Website - [https://the-sweater-store.onrender.com](https://the-sweater-store.onrender.com)
+
