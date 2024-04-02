@@ -1,0 +1,23 @@
+<main>
+  <section class="list">
+    <h1>Лист твоих красивых покупок</h1>
+    <form id="todo-form" class="todo-form">
+      <label for="todo-input">Добавить</label>
+      <input type="text" id="todo-input" />
+      <button type="submit">Добавить</button>
+    </form>
+
+    <!-- Используем тег template для создания списка задач -->
+    <template id="todo-template">
+      <li>
+        <span></span>
+        <button class="delete-btn">Удалить</button>
+        <button class="complete-btn">Куплено</button>
+      </li>
+    </template>
+
+    <ul id="todo-list" class="todo-list"></ul>
+
+    <script src="Scripts/script_list.js"></script>
+  </section>
+</main>
