@@ -35,4 +35,8 @@ export class AppController {
   getWish_listPage() {
     return { title: 'Wish_list', pageType: 'Wish_list' };
   }
+
+  getHello = () => {
+    return undefined;
+  };
 }
