@@ -1,0 +1,76 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Manager {
+  id       Int      @id @default(autoincrement())
+  name     String
+  email    String   @unique
+  users    Users[]  @relation("ManagerUsers")
+
+  @@map("managers")
+}
+
+model Users {
+  id          Int       @id @default(autoincrement())
+  name        String
+  email       String    @unique
+  orders       Order[]
+  shoppingCard ShoppingCard?
+  product Product[]
+  managers Manager[] @relation("ManagerUsers")
+
+  @@map("users")
+}
+
+model Product {
+  id          Int       @id @default(autoincrement())
+  name        String
+  description String?
+  price       Float
+  categoryId   Int
+  category     Category   @relation("CategoryProducts", fields: [categoryId], references: [id])
+  userId      Int
+  user        Users      @relation(fields: [userId], references: [id])
+  orderId     Int
+
+  @@map("products")
+}
+model Order {
+  id          Int       @id @default(autoincrement())
+  quantity    Int
+  totalPrice  Float
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  userId      Int
+  user        Users     @relation(fields: [userId], references: [id])
+
+  @@map("orders")
+}
+
+model Category {
+  id          Int       @id @default(autoincrement())
+  name        String
+  description String?
+  products    Product[] @relation("CategoryProducts")
+
+  @@map("categories")
+}
+
+model ShoppingCard {
+  id         Int        @id @default(autoincrement())
+  totalItems Int
+  totalCost  Float
+  userId     Int @unique
+  user       Users      @relation(fields: [userId], references: [id])
+
+  @@map("shopping_cards")
+}
+
